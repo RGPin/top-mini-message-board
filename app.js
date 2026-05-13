@@ -3,12 +3,12 @@ const path = require("node:path");
 
 const app = express();
 
+const indexRouter = require("./routes/indexRouter");
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  res.send("Hello world");
-});
+app.use("/", indexRouter);
 
 app.listen(8000, (error) => {
   if (error) throw error;
