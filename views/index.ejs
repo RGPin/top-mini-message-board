@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <h1><%= title%></h1>
@@ -12,6 +13,7 @@
         <p><%= message.text %></p>
         <p><%= message.user %></p>
         <p><%= message.added %></p>
+        <a href="/details/<%= message.user %>">View details</a>
       </div>
     <% }) %>
     <a href="/new">Enter new message</a>
