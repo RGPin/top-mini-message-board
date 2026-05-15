@@ -13,7 +13,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 
-app.listen(8000, (error) => {
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, (error) => {
   if (error) throw error;
-  console.log("Listening to port 8000...");
+  console.log(`Listening to port ${PORT}...`);
 });
