@@ -18,8 +18,16 @@ async function addMessagePost(req, res) {
   res.redirect("/");
 }
 
+async function getMessageDetails(req, res) {
+  const { id } = req.params;
+  const messageObj = await db.getMessageById(id);
+  if (!messageObj) res.send("Message not found");
+  res.render("details", { messageObj });
+}
+
 module.exports = {
   getMessages,
   addMessageGet,
   addMessagePost,
+  getMessageDetails,
 };
