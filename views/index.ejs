@@ -14,6 +14,9 @@
         <p><%= message.username %></p>
         <p><%= message.added %></p>
         <a href="/details/<%= message.id %>">View details</a>
+        <form action="/delete/<%= message.id %>" method="POST">
+          <button type="submit">Delete</button>
+        </form>
       </div>
     <% }) %>
     <a href="/new">Enter new message</a>

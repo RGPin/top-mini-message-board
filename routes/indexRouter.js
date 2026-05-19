@@ -5,9 +5,8 @@ const controller = require("../controllers/indexControllers");
 
 indexRouter.get("/", controller.getMessages);
 indexRouter.get("/new", controller.addMessageGet);
-
 indexRouter.get("/details/:id", controller.getMessageDetails);
-
 indexRouter.post("/new", controller.addMessagePost);
+indexRouter.post("/delete/:id", controller.deleteMessagePost);
 
 module.exports = indexRouter;

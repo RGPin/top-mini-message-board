@@ -25,9 +25,15 @@ async function getMessageDetails(req, res) {
   res.render("details", { messageObj });
 }
 
+async function deleteMessagePost(req, res) {
+  await db.deleteMessageById(req.params.id);
+  res.redirect("/");
+}
+
 module.exports = {
   getMessages,
   addMessageGet,
   addMessagePost,
   getMessageDetails,
+  deleteMessagePost,
 };
