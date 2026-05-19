@@ -4,10 +4,7 @@ const indexRouter = express.Router();
 const controller = require("../controllers/indexControllers");
 
 indexRouter.get("/", controller.getMessages);
-
-indexRouter.get("/new", (req, res) => {
-  res.render("form");
-});
+indexRouter.get("/new", controller.addMessageGet);
 
 indexRouter.get("/details/:user", (req, res) => {
   const { user } = req.params;
@@ -16,14 +13,6 @@ indexRouter.get("/details/:user", (req, res) => {
   res.render("details", { messageObj });
 });
 
-indexRouter.post("/new", (req, res) => {
-  const { author, message } = req.body;
-  messages.push({
-    text: message,
-    user: author,
-    added: new Date(),
-  });
-  res.redirect("/");
-});
+indexRouter.post("/new", controller.addMessagePost);
 
 module.exports = indexRouter;
