@@ -2,18 +2,41 @@ import { useEffect, useState } from "react";
 
 export default function Messages() {
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const fetchMessages = async (signal) => {
     try {
-      const data = await fetch();
+      setLoading(true);
+      const response = await fetch("/api", { signal });
+      const data = await response.json();
+      setMessages(data);
     } catch (error) {
-      console.error(errror);
+      if (error.name !== "AbortError") {
+        console.error(error);
+        setError(error);
+      }
+    } finally {
+      setLoading(false);
     }
   };
+
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
     fetchMessages(signal);
     return () => controller.abort();
-  });
-  return <ul></ul>;
+  }, []);
+
+  if (loading) return <h1>Loading...</h1>;
+
+  if (error) return <p>{error.message}</p>;
+
+  return (
+    <ul>
+      {messages.map((message) => (
+        <li key={message.id}>{message.text}</li>
+      ))}
+    </ul>
+  );
 }
