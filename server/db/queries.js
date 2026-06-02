@@ -1,26 +1,52 @@
 const pool = require("./pool");
 
 async function getMessages() {
-  const { rows } = await pool.query("SELECT * FROM messages");
-  return rows;
+  try {
+    const { rows } = await pool.query("SELECT * FROM messages");
+    return rows;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 async function addMessage({ text, username }) {
-  await pool.query("INSERT INTO messages (text, username) VALUES ($1, $2)", [
-    text,
-    username,
-  ]);
+  try {
+    const { rows } = await pool.query(
+      "INSERT INTO messages (text, username) VALUES ($1, $2) RETURNING *",
+      [text, username],
+    );
+    return rows[0] || null;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 async function getMessageById(id) {
-  const { rows } = await pool.query("SELECT * FROM messages WHERE id = ($1)", [
-    id,
-  ]);
-  return rows[0];
+  try {
+    const { rows } = await pool.query(
+      "SELECT * FROM messages WHERE id = ($1)",
+      [id],
+    );
+    return rows[0] || null;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 async function deleteMessageById(id) {
-  await pool.query("DELETE FROM messages WHERE id = ($1)", [id]);
+  try {
+    const { rows } = await pool.query(
+      "DELETE FROM messages WHERE id = ($1) RETURNING *",
+      [id],
+    );
+    return rows[0] || null;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 module.exports = {
