@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Message from "./Message";
 
 export default function Messages() {
   const [messages, setMessages] = useState([]);
@@ -9,6 +10,9 @@ export default function Messages() {
     try {
       setLoading(true);
       const response = await fetch("/api", { signal });
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
       const data = await response.json();
       setMessages(data);
     } catch (error) {
@@ -33,10 +37,10 @@ export default function Messages() {
   if (error) return <p>{error.message}</p>;
 
   return (
-    <ul>
+    <div className="messages">
       {messages.map((message) => (
-        <li key={message.id}>{message.text}</li>
+        <Message key={message.id} message={message} />
       ))}
-    </ul>
+    </div>
   );
 }
