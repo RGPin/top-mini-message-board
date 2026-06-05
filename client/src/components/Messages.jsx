@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Message from "./Message";
+import { Link } from "react-router";
 
 export default function Messages() {
   const [messages, setMessages] = useState([]);
