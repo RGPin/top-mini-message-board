@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function AddMessage() {
   const [username, setUsername] = useState("");
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -28,8 +30,9 @@ export default function AddMessage() {
       setUsername("");
       setText("");
       alert("Message posted successfully!");
+      navigate("/");
     } catch (error) {
-      console.error("Error in submitForm", error);
+      console.error("Error in submitForm", { error });
       setError(error.message);
     } finally {
       setLoading(false);
