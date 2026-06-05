@@ -1,6 +1,28 @@
 import { Link } from "react-router";
 
-export default function Message({ message }) {
+export default function Message({ message, setMessages }) {
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`/api/delete/${message.id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert("Deleted successfully");
+        setMessages((prev) => prev.filter((msg) => msg.id !== message.id));
+      }
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    }
+  };
+
   return (
     <article className="message-card">
       <div className="message-content">
@@ -12,7 +34,7 @@ export default function Message({ message }) {
           View details
         </Link>
 
-        <button type="button" className="btn btn-danger">
+        <button type="button" className="btn btn-danger" onClick={handleDelete}>
           Delete
         </button>
       </div>
