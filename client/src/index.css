@@ -358,41 +358,31 @@ button {
 
 @media (min-width: 1024px) {
   .main-header {
-    padding: 0 var(--space-xxl);
+    padding: var(--space-md) var(--space-xl);
   }
-  .form-container {
-    padding: 0 var(--space-xxl);
+
+  .form-container,
+  .details-page,
+  .home .messages {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-xl);
   }
   .home .messages {
     padding: 0 var(--space-xxl);
     grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
 
     .message-card {
       min-height: 200px;
       .message-actions {
+        margin-top: auto;
         flex-direction: row;
         .btn {
           flex: 1;
         }
       }
     }
-  }
-  .details-page {
-    padding: 0 var(--space-xxl);
-  }
-}
-
-@media (min-width: 1500px) {
-  .main-header {
-    padding: 0 300px;
-  }
-  .form-container {
-    padding: 0 300px;
-  }
-  .home .messages {
-    padding: 0 300px;
-  }
-  .details-page {
-    padding: 0 300px;
   }
 }
