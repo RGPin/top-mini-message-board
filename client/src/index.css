@@ -1,9 +1,168 @@
+*, ::after, ::before {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
 :root {
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* The Scale: Built on a strict 4px/8px grid system */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 64px;
+
+  /* Typography: A clean, functional scale */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --text-xs: 0.75rem;   /* 12px - Captions / Small labels */
+  --text-sm: 0.875rem;  /* 14px - Secondary body / Table text */
+  --text-base: 1rem;    /* 16px - Standard body text */
+  --text-md: 1.25rem;   /* 20px - H3 / Subheadings */
+  --text-lg: 1.5rem;    /* 24px - H2 / Section titles */
+  --text-xl: 2.25rem;   /* 36px - H1 / Page titles */
+
+  /* The 60-30-10 Color Rule Palette */
+  --color-bg: #f8fafc;         /* 60% Dominant (Slate 50) */
+  --color-surface: #ffffff;    /* Card and container backgrounds */
+  
+  --color-text-main: #0f172a;  /* 30% Secondary (Slate 900) */
+  --color-text-muted: #475569; /* For captions, timestamps, placeholders */
+  --color-border: #e2e8f0;     /* Subtle lines */
+
+  --color-primary: #2563eb;    /* 10% Accent (Blue 600) - Interactive elements */
+  --color-primary-hover: #1d4ed8;
+  
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+}
+
+body {
+  background-color: var(--color-bg);
+  font-family: var(--font-sans);
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text-main);
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+.main-header {
+  background-color: var(--color-surface);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-base);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-sm) var(--space-md);
+
+  .header-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    .header-title-text {
+      font-size: var(--text-md);
+      font-weight: 700;
+      color: var(--color-text-main);
+    }
+  }
+
+  .nav-list {
+    display: flex;
+    gap: var(--space-md);
+
+    .nav-link {
+      color: var(--color-primary);
+      padding: var(--space-md);
+      border-radius: var(--radius-sm);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease, color 0.2s ease;
+
+      .link-text {
+        display: none;
+      }
+    }
+
+    .nav-link:hover {
+      color: var(--color-primary-hover);
+      background-color: var(--color-bg);
+    }
+  }
+}
+
+.home .messages {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  margin-top: var(--space-sm);
+  font-size: var(--text-base);
+
+  .message-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+
+    .message-text {
+      color: var(--color-text-main);
+      line-height: 1.5;
+    }
+
+    .message-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+
+      .btn {
+        font-weight: 600;
+        font-size: var(--text-sm);
+        text-align: center;
+
+        padding: var(--space-sm) var(--space-md);
+        border: 1px solid transparent;
+        border-radius: var(--radius-sm);
+      }
+
+      .btn-secondary {
+        background-color: var(--color-bg);
+        color: var(--color-text-main);
+        border-color: var(--color-border);
+      }
+
+      .btn-danger {
+        background-color: #ef4444;
+        color: white;
+      }
+    }
+
+    .message-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+  }
 }
