@@ -41,35 +41,57 @@ export default function AddMessage() {
 
   return (
     <div className="form-container">
-      <h1>Add a message</h1>
+      <h1 className="form-title">Add a message</h1>
 
-      {error && <p className="error-msg">Error: {error}</p>}
+      {error && (
+        <div className="form-error" role="alert">
+          <p className="form-error-text">Error: {error}</p>
+        </div>
+      )}
 
-      <form onSubmit={submitForm}>
-        <label>
-          Username:
+      {loading && (
+        <div className="form-loading">
+          <p className="form-loading-text">Sending...</p>
+        </div>
+      )}
+
+      <form onSubmit={submitForm} className="message-form">
+        <div className="form-group">
+          <label htmlFor="username" className="form-label">
+            Username
+          </label>
           <input
             type="text"
+            id="username"
             name="username"
+            className="form-input"
+            placeholder="e.g., janesmith"
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-        </label>
+        </div>
 
-        <label>
-          Enter your message:
+        <div className="form-group">
+          <label htmlFor="text" className="form-label">
+            Enter your message
+          </label>
           <textarea
+            id="text"
             name="text"
+            className="form-textarea"
+            placeholder="Type your message here..."
             required
             value={text}
             onChange={(e) => setText(e.target.value)}
           ></textarea>
-        </label>
+        </div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Sending..." : "Submit"}
-        </button>
+        <div className="form-actions">
+          <button type="submit" className="btn btn-primary" disabled={loading}>
+            {loading ? "Sending..." : "Submit Message"}
+          </button>
+        </div>
       </form>
     </div>
   );
