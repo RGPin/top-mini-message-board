@@ -266,3 +266,70 @@ button {
     }
   }
 }
+
+.details-page {
+  padding: var(--space-md);
+  .back-link {
+    display: inline-block;
+    color: var(--color-primary);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    padding: var(--space-xs) var(--space-sm) var(--space-xs) 0;
+    margin-bottom: var(--space-md);
+    transition: color 0.2s ease;
+
+    &:hover{
+      color: var(--color-primary-hover);
+    }
+  }
+
+  .details-card {
+    padding: var(--space-lg);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+
+    .details-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: var(--space-md);
+      color: var(--color-text-main);
+
+      .message-id {
+        color: var(--color-text-muted);
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .details-author-name {
+        color: var(--color-text-main);
+        font-weight: 700;
+      }
+    }
+
+    .details-text {
+      color: var(--color-text-main);
+      font-size: var(--text-md);
+      line-height: 1.6;
+    }
+
+    .details-footer {
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--space-sm);
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    background-color: green;
+  }
+}

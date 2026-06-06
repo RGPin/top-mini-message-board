@@ -45,7 +45,8 @@ export default function Details() {
         <header className="details-header">
           <span className="message-id">Message #{id}</span>
           <span className="details-author">
-            Posted by: <strong>{details?.username}</strong>
+            Posted by:{" "}
+            <strong className="details-author-name">{details?.username}</strong>
           </span>
         </header>
 
